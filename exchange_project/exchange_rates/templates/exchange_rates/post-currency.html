@@ -1,0 +1,17 @@
+{% extends 'exchange_rates/base.html' %}
+
+
+{% block title %}
+    <title>Post currency</title>
+{% endblock %}
+
+
+{% block content %}
+  <h1>Post Currencies</h1>
+
+  <form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}
