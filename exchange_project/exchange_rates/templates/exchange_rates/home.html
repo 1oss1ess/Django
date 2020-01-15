@@ -10,10 +10,11 @@
      <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Name of the currency</th>
-        <th scope="col">Courses code</th>
-        <th scope="col">course to BGN</th>
-        <th scope="col">reverse course</th>
+        <th scope="col">currency</th>
+        <th scope="col">Currency code</th>
+        <th scope="col">Currency to BGN</th>
+        <th scope="col">Reverse currency</th>
+        <th scope="col">Number of currency</th>
       </tr>
      </thead>
     <tbody>
@@ -21,9 +22,10 @@
     <tr>
       <th scope="row">{{ currency.pk }}</th>
       <td>{{ currency.name }}</td>
-      <td>{{ currency.course_code }}</td>
-      <td>{{ currency.course_to_bgn }}</td>
-      <td>{{ currency.reverse_course }}</td>
+      <td>{{ currency.currency_code }}</td>
+      <td>{{ currency.currency_to_bgn }}</td>
+      <td>{{ currency.reverse_currency }}</td>
+      <td>{{ currency.count_currency }}</td>
     </tr>
   {% endfor %}
     </tbody>

@@ -8,12 +8,12 @@
 {% block content %}
   <h1>Calculations</h1>
 
-  <form class="course_code" action="{% url 'exchange_rates:calculations' %}" method="POST">
+  <form class="calculation" action="{% url 'exchange_rates:calculations' %}" method="POST">
     {% csrf_token %}
-    <input type="number" name="amount_to_convert" id="amount_to_convert" step=0.000001>
+    <input type="number" name="money" id="money" step=0.000001>
     <select name="from_currency" id="from_currency">
       {% for currency in currencies %}
-      <option value="{{currency.course_code}}">{{ currency.course_code }}</option>
+        <option value="{{currency.currency_code }}">{{ currency.currency_code }}</option>
       {% endfor %}
     </select>
 
@@ -21,7 +21,7 @@
 
     <select name="to_currency" id="to_currency">
       {% for currency in currencies %}
-        <option value="{{ currency.course_code }}">{{ currency.course_code }}</option>
+        <option value="{{ currency.currency_code }}">{{ currency.currency_code }}</option>
       {% endfor %}
     </select>
 

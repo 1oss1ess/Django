@@ -32,14 +32,21 @@ def calculation_exchange_rates(request):
     }
 
     if request.method == 'POST':
-        from_currency = get_object_or_404(Currency, course_code=request.POST['from_currency'])
-        to_currency = get_object_or_404(Currency, course_code=request.POST['to_currency'])
-        money = request.POST.get('amount_to_convert')
-
-        result_of_convert = convert_to(money, from_currency.count_currency,
-                                       from_currency.course_to_bgn, to_currency.reverse_course)
         response_data = {}
+
+        from_currency = get_object_or_404(Currency, currency_code=request.POST['from_currency'])
+        to_currency = get_object_or_404(Currency, currency_code=request.POST['to_currency'])
+
+        money = request.POST.get('money')
+
+        result_of_convert = convert_to(
+            money,
+            from_currency.count_currency,
+            from_currency.currency_to_bgn,
+            to_currency.reverse_currency
+        )
         response_data['result_of_convert'] = result_of_convert
+
         return render(request, 'exchange_rates/calculations.html', response_data)
     else:
         return render(request, 'exchange_rates/calculations.html', context)
