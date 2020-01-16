@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.generic.list import ListView
@@ -30,14 +31,12 @@ def calculation_exchange_rates(request):
     context = {
         'currencies': currencies
     }
+    if request.is_ajax():
 
-    if request.method == 'POST':
-        response_data = {}
+        from_currency = get_object_or_404(Currency, currency_code=request.GET['from_currency'])
+        to_currency = get_object_or_404(Currency, currency_code=request.GET['to_currency'])
 
-        from_currency = get_object_or_404(Currency, currency_code=request.POST['from_currency'])
-        to_currency = get_object_or_404(Currency, currency_code=request.POST['to_currency'])
-
-        money = request.POST.get('money')
+        money = request.GET['money']
 
         result_of_convert = convert_to(
             money,
@@ -45,11 +44,13 @@ def calculation_exchange_rates(request):
             from_currency.currency_to_bgn,
             to_currency.reverse_currency
         )
+
+        response_data = {}
         response_data['result_of_convert'] = result_of_convert
 
-        return render(request, 'exchange_rates/calculations.html', response_data)
-    else:
-        return render(request, 'exchange_rates/calculations.html', context)
+        return JsonResponse(response_data)
+
+    return render(request, 'exchange_rates/calculations.html', context)
 
 
 def convert_to(money, count_currency, from_currency, to_currency):

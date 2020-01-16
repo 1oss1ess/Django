@@ -8,8 +8,7 @@
 {% block content %}
   <h1>Calculations</h1>
 
-  <form class="calculation" action="{% url 'exchange_rates:calculations' %}" method="POST">
-    {% csrf_token %}
+  <form class="calculation" action="{% url 'exchange_rates:calculations' %}" method="GET">
     <input type="number" name="money" id="money" step=0.000001>
     <select name="from_currency" id="from_currency">
       {% for currency in currencies %}
