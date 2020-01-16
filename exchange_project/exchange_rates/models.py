@@ -4,9 +4,9 @@ from django.db import models
 class Currency(models.Model):
     name = models.CharField(max_length=100, unique=True)
     currency_code = models.CharField(max_length=3, unique=True)
-    currency_to_bgn = models.DecimalField(max_digits=15, decimal_places=5)
-    reverse_currency = models.DecimalField(max_digits=15, decimal_places=5)
-    count_currency = models.DecimalField(max_digits=10, decimal_places=5)
+    currency_to_bgn = models.DecimalField(max_digits=22, decimal_places=9)
+    reverse_currency = models.DecimalField(max_digits=22, decimal_places=9)
+    count_currency = models.DecimalField(max_digits=22, decimal_places=9)
 
     class Meta:
         ordering = ('currency_code',)

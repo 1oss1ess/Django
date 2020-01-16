@@ -7,6 +7,7 @@ from django.views.generic.list import ListView
 
 from .forms import PostCurrencyForm
 from .models import Currency
+from .utils import crawling
 
 
 class IndexView(ListView):
@@ -55,3 +56,8 @@ def calculation_exchange_rates(request):
 
 def convert_to(money, count_currency, from_currency, to_currency):
     return (Decimal(money)/count_currency) * from_currency * to_currency
+
+
+def crawler_view(request):
+    crawling()
+    return redirect(reverse('exchange_rates:home'))

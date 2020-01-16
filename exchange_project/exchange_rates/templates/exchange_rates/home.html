@@ -6,6 +6,7 @@
 
 {% block content %}
   <h2>Exchange rates:</h2>
+  <a href="{% url 'exchange_rates:crawler' %}" class="btn btn-danger">Refresh Exchange Rates </a>
    <table class="table table-dark">
      <thead>
       <tr>
