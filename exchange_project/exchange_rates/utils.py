@@ -19,10 +19,9 @@ def crawling():
             break
         count_currency = Decimal(data[3])
         currency_to_bgn = Decimal(data[4])
+        if data[5] is '':
+            continue
         reverse_currency = Decimal(data[5])
-        
-        import pdb;
-        pdb.set_trace()
 
         Currency.objects.update_or_create(name=data[1],
                                           currency_code=data[2],
