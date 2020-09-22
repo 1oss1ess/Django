@@ -18,7 +18,7 @@ Apply Scrapy to collect information from prime ministers and Django REST to retu
 >- python manage.py runserver
 
 ***Warning***: Few python packages required: 
-- pip install requirements.txt
+- pip install -r requirements.txt
 
 
 &nbsp;
